@@ -2,6 +2,9 @@ import smtplib, ssl
 import json
 import random
 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 with open('data/quotes_1.json') as file:
     data = json.load(file)
 
@@ -23,8 +26,27 @@ message = """\
 Subject: Hi there
 """+quote['text']+"""\
 
+# message = """\
+# Subject: Hi there
+# """+quote['text']+"""\
+#
+#
+# ~"""+quote['author']
 
+message = MIMEMultipart()
+message['From'] = sender_email
+# message['To'] = receiver_email
+message['Subject'] = "[Testing]Thought of the Day"
+message['To'] = 'rallyrajesh@gmail.com'
+
+text = quote['text'] + """  
 ~"""+quote['author']
+
+text = MIMEText(text, "plain")
+
+message.attach(text)
+
+message = message.as_string()
 
 context = ssl.create_default_context()
 with smtplib.SMTP(smtp_server, port) as server:

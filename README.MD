@@ -9,7 +9,7 @@ Sending a quote daily to a set of people emails.
 - [ ] Add a Way to unsubscribe. 
 - [ ] Customized subjects daily 
 - [ ] Add a Way for people to include their quotes in the DB
-- [ ] Send Multiple Emails at the same time
-
+- [x] Send Multiple Emails at the same time
+- [ ] Include Tinydb for the quotes storing
   
  
